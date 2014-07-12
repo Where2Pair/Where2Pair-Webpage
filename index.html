@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <style type="text/css">
-    html { height: 100% }
-    body { height: 100%; margin: 0; padding: 0 }
-    #map-canvas { height: 100% }
-    </style>
-    <script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPLA0YSGPFG-AyKjGNLazlHIY_iHlzPw">
-    </script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    function initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng(51.5072, -0.1),
-          zoom: 12
-      };
-      map = new google.maps.Map(document.getElementById("map-canvas"),
-        mapOptions);
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0; padding: 0 }
+  #map-canvas { height: 100% }
+  </style>
+  <script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPLA0YSGPFG-AyKjGNLazlHIY_iHlzPw">
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  function initialize() {
+    var mapOptions = {
+      center: new google.maps.LatLng(51.5072, -0.1),
+      zoom: 12
+    };
+    map = new google.maps.Map(document.getElementById("map-canvas"),
+      mapOptions);
   }
   google.maps.event.addDomListener(window, 'load', initialize);
   </script>
@@ -26,23 +26,23 @@
   window.onload=function(){
     var where2pairApi = 'http://localhost:5050/venues/nearest'
     $.getJSON( where2pairApi, {
-        location: '51.5072,0.1'
+      location: '51.5072,0.1'
     })
     .done(function(data) {
-        $.each(data, function(i, result) {
-            var latLng = new google.maps.LatLng(result.venue.location.latitude, result.venue.location.longitude)
-            var venueName = result.venue.name
-            var marker = new google.maps.Marker({
-                position: latLng,
-                map: map,
-                title: venueName
-            });       
-        })
+      $.each(data, function(i, result) {
+        var latLng = new google.maps.LatLng(result.venue.location.latitude, result.venue.location.longitude)
+        var venueName = result.venue.name
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map,
+          title: venueName
+        });       
+      })
     })
-}
-</script>
+  }
+  </script>
 </head>
 <body>
-    <div id="map-canvas"/>
+  <div id="map-canvas"/>
 </body>
 </html>
